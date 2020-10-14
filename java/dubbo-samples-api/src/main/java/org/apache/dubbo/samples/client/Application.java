@@ -27,11 +27,17 @@ public class Application {
     private static String zookeeperHost = System.getProperty("zookeeper.address", "127.0.0.1");
 
     public static void main(String[] args) {
+        //当前应用的配置
+        //注意：ReferenceConfig 类也为重对象，内部封装了与注册中心的连接以及开启服务端口
         ReferenceConfig<GreetingsService> reference = new ReferenceConfig<>();
         reference.setApplication(new ApplicationConfig("first-dubbo-consumer"));
+        //注册中心配置
         reference.setRegistry(new RegistryConfig("zookeeper://" + zookeeperHost + ":2181"));
+        //接口设置
         reference.setInterface(GreetingsService.class);
+        //得到接口的代理实例
         GreetingsService service = reference.get();
+        //进行 RPC 调用
         String message = service.sayHi("dubbo");
         System.out.println(message);
     }

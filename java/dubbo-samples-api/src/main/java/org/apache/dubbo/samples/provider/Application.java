@@ -29,11 +29,18 @@ public class Application {
     private static String zookeeperHost = System.getProperty("zookeeper.address", "127.0.0.1");
 
     public static void main(String[] args) throws Exception {
+        //应用配置
+        //注意：ServiceConfig 类为重对象，内部封装了与注册中心的连接以及开启服务端口
         ServiceConfig<GreetingsService> service = new ServiceConfig<>();
+        //设置应用名
         service.setApplication(new ApplicationConfig("first-dubbo-provider"));
+        //设置注册中心
         service.setRegistry(new RegistryConfig("zookeeper://" + zookeeperHost + ":2181"));
+        //设置要注册的接口
         service.setInterface(GreetingsService.class);
+        //设置注册接口的具体实现类
         service.setRef(new GreetingsServiceImpl());
+        //暴露以及注册服务
         service.export();
 
         System.out.println("dubbo service started");
