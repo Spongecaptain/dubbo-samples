@@ -33,8 +33,9 @@ public class BasicProvider {
 //        new EmbeddedZooKeeper(2200, false).start();
         // wait for embedded zookeeper start completely.
 //        Thread.sleep(1000);
-
+        //1.这里需要指定暴露的配置文件
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-provider.xml");
+        //2. 启动 Spring 容器并暴露服务
         context.start();
 
         System.out.println("dubbo service started");

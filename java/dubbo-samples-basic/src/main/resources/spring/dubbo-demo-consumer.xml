@@ -22,11 +22,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder/>
-
+    <!--服务消费方应用名称，方便用于依赖跟-->
     <dubbo:application name="demo-consumer"/>
     <!--因为我自己的 ZooKeeper 绑定了 2182 端口，如果要启动内嵌的 ZooKeeper 那么我们这里就修改此配置为 2200 端口-->
     <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:2181"/>
-
+    <!--指定要消费的服务-->
     <dubbo:reference id="demoService" check="true" interface="org.apache.dubbo.samples.basic.api.DemoService"/>
 
 </beans>

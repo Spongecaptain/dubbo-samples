@@ -22,13 +22,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder/>
-
+    <!--服务提供方应用名称，方便于依赖跟踪-->
     <dubbo:application name="demo-provider"/>
     <!--因为我自己的 ZooKeeper 绑定了 2182 端口，如果要启动内嵌的 ZooKeeper 那么我们这里就修改此配置为 2200 端口-->
     <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:2181"/>
-
+    <!--通过 XML 方式将接口的实现类配置为 Bean，并让 Spring 容器来管理此实例-->
     <bean id="demoService" class="org.apache.dubbo.samples.basic.impl.DemoServiceImpl"/>
-
+    <!--声明要暴露的接口，并利用 beanNamn 来指定实现了此接口的 Bean-->
     <dubbo:service interface="org.apache.dubbo.samples.basic.api.DemoService" ref="demoService"/>
 
 </beans>

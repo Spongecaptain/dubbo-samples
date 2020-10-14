@@ -28,11 +28,14 @@ import java.io.IOException;
 public class BasicConsumer {
 
     public static void main(String[] args) {
+        //1. 加载配置
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-consumer.xml");
+        //2. 获取消费代理
         context.start();
         DemoService demoService = (DemoService) context.getBean("demoService");
         //改为调用 3 次
         for (int i = 0; i < 3; i++) {
+            //3. 调用远程方法
             String hello = demoService.sayHello("world");
             //在控制台输出红色更醒目一点
             System.err.println(hello);
