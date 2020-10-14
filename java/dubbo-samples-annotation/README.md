@@ -2,6 +2,9 @@ This sample shows how to use Dubbo by annotation-driven configuration.
 
 ## Provider Configuration
 
+这个模块用于说明如何基于注解来配置 Dubbo 的 Consumer 以及 Provider，然后实现 RPC 调用；
+顺带着体现了一下当 Consumer 在 RPC 调用时超时时会抛出的异常。
+当 RPC 调用抛出异常时，RPC 就会在控制台打印出异常栈，然后返回一个默认值 Throw Exception
 First, there have to be an overall configuration of provider:
 
 ```Java

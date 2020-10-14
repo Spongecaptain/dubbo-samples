@@ -27,9 +27,15 @@ import org.apache.dubbo.samples.annotation.api.HelloService;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * 这个类服务于 Consumer 端，用于提供：
+ * - 封装了依赖于某一个接口（实现类）来完成方法调用的逻辑
+ * -
+ */
+//@Component 用于表明此类希望被 IoC 容器纳入管理
 @Component("annotationAction")
 public class AnnotationAction {
-
+    //@Reference 注解用于 Spring 来提供自动注入对应接口的代理类实例（代理类完成了对 RPC 远程调用的封装）
     @Reference(interfaceClass = HelloService.class, version = AnnotationConstants.VERSION /*,
             methods = {
                     @Method(
@@ -48,6 +54,7 @@ public class AnnotationAction {
             methods = {@Method(name = "greeting", timeout = 3000, retries = 1)})
     private GreetingService greetingService;
 
+    //下面的若干方法都依赖于 @Reference 注解标记的实例来完成调用
     public String doSayHello(String name) {
         try {
             return helloService.sayHello(name);

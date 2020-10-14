@@ -28,8 +28,9 @@ import java.util.concurrent.CountDownLatch;
 public class AnnotationProviderBootstrap {
 
     public static void main(String[] args) throws Exception {
-        new EmbeddedZooKeeper(2181, false).start();
-
+        //因为已经启动了一个 ZooKeeper 因此这里不需要再启动一个内嵌的 ZooKeeper 了
+        //new EmbeddedZooKeeper(2181, false).start();
+        //提供一个配置类
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProviderConfiguration.class);
         context.start();
 

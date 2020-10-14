@@ -36,6 +36,10 @@ public class AnnotationGreetingServiceImpl implements GreetingService {
         return "Annotation, fine " + name;
     }
 
+    /**
+     * 休眠 2000 ms，客户端处若对超时的容错值低于此值，那么就会在调用时抛出异常
+     * 因为客户端处的超时恰好定义为 1000 ms，因此调用此方法会最终导致客户端处抛出异常
+     */
     private void sleepWhile() {
         try {
             Thread.sleep(2000);

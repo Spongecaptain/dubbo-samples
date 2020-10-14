@@ -22,11 +22,16 @@ import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-
+/**
+ * 客户端配置类
+ */
 @Configuration
+//自动扫描服务对应接口所在的包下被 Dubbo 注解标记着的类
 @EnableDubbo(scanBasePackages = "org.apache.dubbo.samples.annotation.impl")
+//指定配置文件路径
 @PropertySource("classpath:/spring/dubbo-provider.properties")
 public class ProviderConfiguration {
+    //这个 Bean 用于 Provider 侧的配置，例如 ProtocolConfig、RegistryConfig、ApplicationConfig、
     @Bean
     public ProviderConfig providerConfig() {
         ProviderConfig providerConfig = new ProviderConfig();
