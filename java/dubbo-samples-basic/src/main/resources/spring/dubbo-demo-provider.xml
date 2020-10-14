@@ -24,7 +24,7 @@
     <context:property-placeholder/>
 
     <dubbo:application name="demo-provider"/>
-
+    <!--因为我自己的 ZooKeeper 绑定了 2182 端口，如果要启动内嵌的 ZooKeeper 那么我们这里就修改此配置为 2200 端口-->
     <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:2181"/>
 
     <bean id="demoService" class="org.apache.dubbo.samples.basic.impl.DemoServiceImpl"/>

@@ -42,6 +42,7 @@ import org.springframework.util.SocketUtils;
  * @author Mark Fisher
  * @author David Turanski
  */
+//用于启动一个内置的 ZooKeeper（Standalone 模式）服务端
 public class EmbeddedZooKeeper implements SmartLifecycle {
 
     /**

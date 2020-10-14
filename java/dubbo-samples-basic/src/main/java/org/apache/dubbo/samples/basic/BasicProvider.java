@@ -26,9 +26,13 @@ import java.util.concurrent.CountDownLatch;
 public class BasicProvider {
 
     public static void main(String[] args) throws Exception {
-        new EmbeddedZooKeeper(2181, false).start();
+        /**
+         * 如果你已经启动了一个 ZooKeeper，那么完全可以将此内嵌的 ZooKeeper 注释掉，记得改为外置的 ZooKeeper 的端口
+         */
+        //因为我自己的 ZooKeeper 绑定了 2182 端口，因此我们这里就修改此配置为 2200 端口
+//        new EmbeddedZooKeeper(2200, false).start();
         // wait for embedded zookeeper start completely.
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-provider.xml");
         context.start();

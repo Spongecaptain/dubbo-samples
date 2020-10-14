@@ -23,14 +23,26 @@ import org.apache.dubbo.samples.basic.api.DemoService;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
+
 public class BasicConsumer {
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-demo-consumer.xml");
         context.start();
         DemoService demoService = (DemoService) context.getBean("demoService");
-        String hello = demoService.sayHello("world");
-        System.out.println(hello);
+        //改为调用 3 次
+        for (int i = 0; i < 3; i++) {
+            String hello = demoService.sayHello("world");
+            //在控制台输出红色更醒目一点
+            System.err.println(hello);
+        }
+        //System.in.read(); 用于避免 Consumer 的 main 方法暂停运行
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 //        System.out.println("start void test...");
 //        demoService.testVoid();
