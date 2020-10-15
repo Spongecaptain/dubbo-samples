@@ -31,7 +31,7 @@ import org.springframework.context.annotation.PropertySource;
 //指定配置文件路径
 @PropertySource("classpath:/spring/dubbo-provider.properties")
 public class ProviderConfiguration {
-    //这个 Bean 用于 Provider 侧的配置，例如 ProtocolConfig、RegistryConfig、ApplicationConfig、
+    //这个 Bean 用于 Provider 侧的配置，例如 ProtocolConfig、RegistryConfig、ApplicationConfig 都可以通过这种方式加入，起到了利用 API 来修改配置的作用
     @Bean
     public ProviderConfig providerConfig() {
         ProviderConfig providerConfig = new ProviderConfig();

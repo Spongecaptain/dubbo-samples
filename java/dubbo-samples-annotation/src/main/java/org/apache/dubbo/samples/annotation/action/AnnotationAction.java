@@ -29,8 +29,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 这个类服务于 Consumer 端，用于提供：
- * - 封装了依赖于某一个接口（实现类）来完成方法调用的逻辑
- * -
+ * - 封装了依赖于某一个接口（实现类）来完成方法调用的逻辑（类似于代理类的作用）
+ * - 向外暴露接口的相关方法（但是其本身并没有实现具体的某一个接口）
  */
 //@Component 用于表明此类希望被 IoC 容器纳入管理
 @Component("annotationAction")
